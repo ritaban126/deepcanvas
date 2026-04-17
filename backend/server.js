@@ -25,15 +25,15 @@ app.use(cors({
 app.use('/api/user', userRouter)
 app.use('/api/image', imageRouter)
 
-// Health check ✅ move above production block
-app.get('/', (req, res) => {
+// Change health check from '/' to '/api'
+app.get('/api', (req, res) => {
   res.send("Api Working")
 })
 
-// Production - serve frontend
+// Production - serve frontend (must be LAST)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
-  app.get("/{*path}", (req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
   });
 }
