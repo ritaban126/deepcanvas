@@ -208,5 +208,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 
 
-  
-GitHub: [@your-username](https://github.com/your-username)
