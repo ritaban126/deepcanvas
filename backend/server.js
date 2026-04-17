@@ -25,9 +25,10 @@ app.get('/api', (req, res) => {
   res.send("Api Working")
 })
 
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
-  app.get("/{*path}", (req, res) => {    // ✅ Fixed
+  app.use((req, res) => {    // ✅ Use middleware instead of app.get("*")
     res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
   });
 }
